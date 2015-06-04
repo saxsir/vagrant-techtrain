@@ -1,2 +1,9 @@
 # vagrant
 .vagrant
+
+# gem
+.bundle
+vendor/bundle
+
+# rspec
+.rspec
