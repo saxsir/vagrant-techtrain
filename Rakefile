@@ -4,11 +4,11 @@ require 'rspec/core/rake_task'
 hosts = [
   {
     :name  => 'app',
-    :roles => %w(app base),
+    :roles => %w(app),
   },
   {
     :name  => 'ci',
-    :roles => %w(app base ci),
+    :roles => %w(app ci),
   },
 ]
 
