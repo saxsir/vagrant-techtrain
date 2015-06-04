@@ -10,10 +10,10 @@ Vagrant.configure("2") do |config|
     ap.vm.provider :virtualbox do |vb|
       vb.name = "treasure2015-ap"
     end
-    # ap.vm.provision :puppet, :options => '--modulepath="/vagrant/puppet/modules":"/vagrant/puppet/roles"' do |puppet|
-    #    puppet.manifests_path  = ["vm","/vagrant/puppet/manifests"]
-    #    puppet.manifest_file  = "app.pp"
-    # end
+    ap.vm.provision :puppet, :options => '--modulepath="/vagrant/puppet/modules":"/vagrant/puppet/roles"' do |puppet|
+       puppet.manifests_path  = ["vm","/vagrant/puppet/manifests"]
+       puppet.manifest_file  = "app.pp"
+    end
   end
 
   config.vm.define :ci do |ci|
@@ -22,9 +22,9 @@ Vagrant.configure("2") do |config|
     ci.vm.provider :virtualbox do |vb|
       vb.name = "treasure2015-ci"
     end
-    # ci.vm.provision :puppet, :options => '--modulepath="/vagrant/puppet/modules":"/vagrant/puppet/roles"' do |puppet|
-    #    puppet.manifests_path  = ["vm","/vagrant/puppet/manifests"]
-    #    puppet.manifest_file  = "ci.pp"
-    # end
+    ci.vm.provision :puppet, :options => '--modulepath="/vagrant/puppet/modules":"/vagrant/puppet/roles"' do |puppet|
+       puppet.manifests_path  = ["vm","/vagrant/puppet/manifests"]
+       puppet.manifest_file  = "ci.pp"
+    end
   end
 end
