@@ -4,3 +4,6 @@
 # gem
 .bundle
 vendor/bundle
+
+# rspec
+.rspec
