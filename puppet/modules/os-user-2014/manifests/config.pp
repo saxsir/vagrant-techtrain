@@ -4,7 +4,7 @@ class os-user-2014::config{
         groups => ['developer', 'wheel'],
         comment => 'techtrain',
         home => '/home/techtrain',
-        password => '$6$u/a559S9y3CwTJCp$sSwn.GZDUrRGh5Ref8eKH3cxQxJHB/dCJqJOyxjnBk8zkXnasT2zLfM9LQ2EYzA.ntrwYuWrAkvXzNGYyAoLk1',
+        password => '$6$9WqM1gfkgn1vxX7u$bDDrLHMBfMsUAoTvdouMpOhHSYqUkh2xpPU8iGOkBHB8W0Q1amUOAZqqIflmOLiHixr7oK1FxICnBWdooMyjz0',
         managehome => true,
         shell => '/bin/bash',
         require => Group['developer'],
