@@ -1,0 +1,10 @@
+:local_hosts:
+  - :name: 192.168.56.33
+    :roles:
+      - app
+      - ci
+:remote_hosts:
+  - :name: example.com
+    :roles:
+      - app
+      - ci

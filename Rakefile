@@ -1,33 +1,22 @@
 require 'rake'
 require 'rspec/core/rake_task'
+require 'yaml'
 
-hosts = [
-  {
-    :name  => 'app',
-    :roles => %w(app),
-  },
-  {
-    :name  => 'ci',
-    :roles => %w(app ci),
-  },
-]
+config = YAML.load_file('config.yml')
+local_hosts = config[:local_hosts]
+remote_hosts = config[:remote_hosts]
 
-hosts = hosts.map do |host|
-  {
-    :name       => host[:name],
-    :short_name => host[:name].split('.')[0],
-    :roles      => host[:roles],
-  }
-end
-
-task :spec    => 'serverspec:all'
-task :default => :spec
+task :spec_local  => 'serverspec:local'
+task :spec_remote  => 'serverspec:remote'
+task :default => :spec_local
 
 namespace :serverspec do
-  task :all => hosts.map {|h| 'serverspec:' + h[:short_name] }
-  hosts.each do |host|
+  task :local => local_hosts.map { |h| "serverspec:#{h[:name]}" }
+  task :remote => remote_hosts.map { |h| "serverspec:#{h[:name]}" }
+
+  local_hosts.concat(remote_hosts).each do |host|
     desc "Run serverspec to #{host[:name]}"
-    RSpec::Core::RakeTask.new(host[:short_name].to_sym) do |t|
+    RSpec::Core::RakeTask.new(host[:name].to_sym) do |t|
       ENV['TARGET_HOST'] = host[:name]
       t.pattern = 'spec/{' + host[:roles].join(',') + '}/*_spec.rb'
     end
