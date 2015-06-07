@@ -37,6 +37,13 @@ end
   end
 end
 
+describe iptables do
+    it { should have_rule('-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT') }
+    it { should have_rule('-A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT') }
+    it { should have_rule('-A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT') }
+    it { should have_rule('-A INPUT -p tcp -m state --state NEW -m tcp --dport 8888 -j ACCEPT') }
+end
+
 #TODO: /etc/ssh/sshd_configの設定を確認する
 
 # apacheチェック(httpd.confの中身を見る？）
